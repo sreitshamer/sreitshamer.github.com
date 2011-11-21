@@ -87,9 +87,38 @@ S3 bucket: akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq.ap-southeast-1    (no c
 <pre><code>arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E
 </code></pre>
 
+<h3>Print Reflog</h3>
+
+<p>Each time Arq stores a new "commit" (backup), it writes a "reflog entry" containing the commit's key. You can print this reflog (it prints in reverse-chronological order) and then restore a specific commit instead of restoring the latest commit. The command is the same as the restore command for a folder, but with the "reflog" argument at the end. For example:</p>
+<pre><code>arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E reflog
+</code></pre>
+<p>produces output like this:</p>
+<pre><code>
+printing reflog for src
+reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343577367
+	blobkey: &lt;BlobKey d4adc50a482663a50bdcae3327e0f3c10f4bd015,stretchedkey=YES&gt;
+	author: stefan
+	date: 2011-11-21 14:09:24 +0000
+	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
+	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E d4adc50a482663a50bdcae3327e0f3c10f4bd015
+reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343577118
+	blobkey: &lt;BlobKey 63e47aa0d84e47c9eb5721c4d675f75cca1af897,stretchedkey=YES&gt;
+	author: stefan
+	date: 2011-11-21 14:05:15 +0000
+	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
+	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E 63e47aa0d84e47c9eb5721c4d675f75cca1af897
+reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343573520
+	blobkey: &lt;BlobKey 4f1efe4d3a65edf3ab59741583e47027cc2da3b9,stretchedkey=YES&gt;
+	author: stefan
+	date: 2011-11-21 13:05:19 +0000
+	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
+	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E 4f1efe4d3a65edf3ab59741583e47027cc2da3b9
+</code></pre>
+<p>You can execute the command listed as "restore command" under each reflog entry to restore that specific "commit".</p>
+
 <h2>License</h2>
 
-<pre><code>Copyright (c) 2009-2010, Stefan Reitshamer http://www.haystacksoftware.com
+<pre><code>Copyright (c) 2009-2011, Stefan Reitshamer http://www.haystacksoftware.com
 
 All rights reserved.
 
