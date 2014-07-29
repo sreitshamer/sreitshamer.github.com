@@ -146,6 +146,14 @@ restoring folder /Volumes/Spinning Disk/stefan/Music to /Users/stefan/temp/Music
 
 </code></pre>
 
+<h2>Google Drive</h2>
+
+<p>If you want to use arq_restore with your Google Drive account, it's a bit more complicated. This is because Google Drive uses OAuth authentication. Arq has a client ID and client secret, but we need to keep that to ourselves, so you'll have to create your own client ID and client secret, authorize it for your account, and then copy/paste it into the arq_restore source and compile it.</p>
+
+<p>Get your own client ID and client secret at the <a href="https://console.developers.google.com/project">Google Developers Console</a>.</p>
+
+<p>Google's <a href="https://code.google.com/p/gtm-oauth2/">gtm-oauth2</a> project has a handy example app. You can enter your client ID and secret and then use it to authorize access for that client ID to your Google Drive account.</p>
+
 <h2>License</h2>
 
 <pre><code>Copyright (c) 2009-2014, Stefan Reitshamer http://www.haystacksoftware.com
