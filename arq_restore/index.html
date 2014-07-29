@@ -12,108 +12,139 @@
 <p>The data format is documented <a href="http://www.haystacksoftware.com/arq/s3_data_format.txt">here</a>.</p>
 
 <h2>Usage</h2>
-<p>First set 3 environment variables:</p>
 
-<ul>
-<li><code>ARQ_ACCESS_KEY</code>: your S3 access key ID</li>
-<li><code>ARQ_SECRET_KEY</code>: your S3 secret key</li>
-<li><code>ARQ_ENCRYPTION_PASSWORD</code>: the password you used to encrypt your backups</li>
-</ul>
+<p>arq_restore can list the computers ("backup sets") in your destination (Amazon, S3-compatible, GreenQloud, DreamObjects, Google Cloud Storage, and Google Drive), list the folders in a computer's backup set, and restore a folder.</p>
 
+<h3>Get Help</h3>
 
-<h3>List Backed-Up Folders</h3>
-
-<p>Type <code>arq_restore</code> with no arguments to list all backed-up folders.</p>
-
-<p>Example output:</p>
+<p>Type <code>arq_restore</code> with no arguments to see usage instructions.</p>
 
 <pre><code>
-S3 bucket: akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq    Stefan's MacBook Pro (stefan) UUID 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570
-        /Volumes/Spinning Disk/stefan/Virtual Machines
-            UUID:            04587920-BF71-49B4-B4D0-B2E63CA64F88
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/04587920-BF71-49B4-B4D0-B2E63CA64F88 reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/04587920-BF71-49B4-B4D0-B2E63CA64F88
-
-        /Users/stefan/src
-            UUID:            1D142EAB-3218-48BD-BF5B-4EAEF504783E
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E
-
-        /Users/stefan/Dropbox
-            UUID:            496803FB-AFCB-4102-ACCA-0A96018D32A4
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/496803FB-AFCB-4102-ACCA-0A96018D32A4 reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/496803FB-AFCB-4102-ACCA-0A96018D32A4
-
-        /Users/stefan/Library
-            UUID:            4F86F72A-7D70-4C55-A59A-038B96852C47
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/4F86F72A-7D70-4C55-A59A-038B96852C47 reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/4F86F72A-7D70-4C55-A59A-038B96852C47
-
-        /Users/stefan/bin
-            UUID:            50451320-3BD4-47EC-B9DC-215633AE61FC
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/50451320-3BD4-47EC-B9DC-215633AE61FC reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/50451320-3BD4-47EC-B9DC-215633AE61FC
-
-        /Volumes/Spinning Disk/stefan/Music
-            UUID:            7C554E65-4324-4B81-9675-4D6EA686B0DD
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/7C554E65-4324-4B81-9675-4D6EA686B0DD reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/7C554E65-4324-4B81-9675-4D6EA686B0DD
-
-        /Volumes/Spinning Disk/stefan/Pictures/iPhoto Library
-            UUID:            A556654E-BCBC-4CF6-A5A9-AA4E6FF7E1DD
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/A556654E-BCBC-4CF6-A5A9-AA4E6FF7E1DD reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/A556654E-BCBC-4CF6-A5A9-AA4E6FF7E1DD
-
-        /Users/stefan/.ssh
-            UUID:            AF6073E2-36F4-44AE-AC86-7014CA736EC7
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/AF6073E2-36F4-44AE-AC86-7014CA736EC7 reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/AF6073E2-36F4-44AE-AC86-7014CA736EC7
-
-        /Users/stefan/Desktop
-            UUID:            B5547B68-832A-4C5C-96F1-5DA8CBF3F645
-            reflog command:  arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/B5547B68-832A-4C5C-96F1-5DA8CBF3F645 reflog
-            restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/B5547B68-832A-4C5C-96F1-5DA8CBF3F645
+Usage:
+    arq_restore [-l log_level] listcomputers <target_type> <target_params>
+    arq_restore [-l log_level] listfolders <computer_uuid> <encryption_password> <target_type> <target_params>
+    arq_restore [-l log_level] restore <computer_uuid> <encryption_password> <folder_uuid> <bytes_per_second> <target_type> <target_params>
+    
+target_params by target type:
+    aws:                 access_key secret_key bucket_name
+    sftp:                hostname port path username password_or_keyfile [keyfile_passphrase]
+    greenqloud:          access_key secret_key bucket_name
+    dreamobjects:        public_key secret_key bucket_name
+    googlecloudstorage:  public_key secret_key bucket_name
+    s3compatible:        service_url access_key secret_key bucket_name
+    googledrive:         refresh_token path
 </code></pre>
 
-<p>The <code>s3 path</code> value is of the form <code>/&lt;s3 bucket name&gt;/&lt;computer uuid&gt;/buckets/&lt;folder uuid&gt;</code>.</p>
+<p>As you can see the arguments are different depending on the type of your storage destination.</p>
 
-<p>(The word "buckets" in the path should be "folders", but it's not for historical reasons).</p>
+<h3>List Computers</h3>
 
-<h3>Restore from a Backup</h3>
+<p>To list all the computers in your destination, use the <code>listcomputers</code> command. Here's an example using AWS:</p>
 
-<p>To restore the latest version of one of the folders, type the <code>restore command</code> listed.</p>
-<p>For example, to restore the "src" folder from "Stefan's MacBook Pro" above, type:</p>
-<pre><code>arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E
-</code></pre>
-
-<h3>Print Reflog</h3>
-
-<p>Each time Arq stores a new "commit" (backup), it writes a "reflog entry" containing the commit's key. You can print this reflog (it prints in reverse-chronological order) and then restore a specific commit instead of restoring the latest commit. The command is the same as the restore command for a folder, but with the "reflog" argument at the end. For example:</p>
-<pre><code>arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E reflog
-</code></pre>
-<p>produces output like this:</p>
 <pre><code>
-printing reflog for src
-reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343577367
-	blobkey: &lt;BlobKey d4adc50a482663a50bdcae3327e0f3c10f4bd015,stretchedkey=YES&gt;
-	author: stefan
-	date: 2011-11-21 14:09:24 +0000
-	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
-	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E d4adc50a482663a50bdcae3327e0f3c10f4bd015
-reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343577118
-	blobkey: &lt;BlobKey 63e47aa0d84e47c9eb5721c4d675f75cca1af897,stretchedkey=YES&gt;
-	author: stefan
-	date: 2011-11-21 14:05:15 +0000
-	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
-	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E 63e47aa0d84e47c9eb5721c4d675f75cca1af897
-reflog /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/bucketdata/1D142EAB-3218-48BD-BF5B-4EAEF504783E/refs/logs/master/343573520
-	blobkey: &lt;BlobKey 4f1efe4d3a65edf3ab59741583e47027cc2da3b9,stretchedkey=YES&gt;
-	author: stefan
-	date: 2011-11-21 13:05:19 +0000
-	location: file://Stefan's%20MacBook%20Pro/Users/stefan/src
-	restore command: arq_restore /akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq/32D9D7A2-3B3E-4BE7-B85B-0605AF24F570/buckets/1D142EAB-3218-48BD-BF5B-4EAEF504783E 4f1efe4d3a65edf3ab59741583e47027cc2da3b9
+$ arq_restore listcomputers aws AKIAIPXLWYHBMEO22ZNQ QMqT0cdSuHs6eCanSVGr/odThlgoBqYfiWuOsOGI akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq
+target: Amazon
+    computer FFF83999-A5A5-4E56-B680-05E68FA51814
+        Elise's iMac (elise)
+    computer 3BA5A6DF-C5EC-409F-9B97-9D437B289BC7
+        Mac Mini (stefan)
+    computer 2CD9AD49-AE8E-4456-9C60-E75D4B33D4D1
+        Sam Reitshamer's computer (sam)
+    computer 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570
+        Stefan's MacBook Pro (stefan)
+    computer 75EB74E3-2B18-4B1C-A54C-A518640C83C8
+        office iMac (stefan)
+
 </code></pre>
-<p>You can execute the command listed as "restore command" under each reflog entry to restore that specific "commit".</p>
+
+<h3>List Folders</h3>
+
+<p>To list the folders in a computer's backup set, use the <code>listfolders</code> command:</p>
+
+
+<pre><code>
+$ arq_restore listfolders 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570 password aws AKIAIPXLWYHBMEO22ZNQ QMqT0cdSuHs6eCanSVGr/odThlgoBqYfiWuOsOGI akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq
+target   Amazon
+computer 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570
+    folder /Users/stefan/.gnupg
+        uuid 7733A367-E6BA-4A71-A3BE-BCC3A67CF036
+    folder /Users/stefan/.ssh
+        uuid A66799E8-1046-4458-84B7-C1A0BD751715
+    folder /Applications
+        uuid 4A2942C3-463F-4B49-B6F8-AF847BA97496
+    folder /Users/stefan/bin
+        uuid E1C3C6ED-0E22-4EC1-AAD8-08CDE0A3ED19
+    folder /Users/stefan/Desktop
+        uuid B5547B68-832A-4C5C-96F1-5DA8CBF3F645
+    folder /Users/stefan/Documents
+        uuid A215E970-1320-4B95-8133-7A50F68FC59D
+    folder /Users/stefan/Pictures/iPhoto Library
+        uuid 017CBF62-BD6C-4580-9A00-8D008D06B84E
+    folder /Users/stefan/Library
+        uuid 4F86F72A-7D70-4C55-A59A-038B96852C47
+    folder /Volumes/Spinning Disk/stefan/Music
+        uuid 7C554E65-4324-4B81-9675-4D6EA686B0DD
+    folder /Users/stefan/src
+        uuid 1D142EAB-3218-48BD-BF5B-4EAEF504783E
+
+</code></pre>
+
+<h3>List Files</h3>
+
+<p>To list the files in a folder, use the <code>listfiles</code> command:</p>
+
+
+<pre><code>
+$ arq_restore listfiles 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570 password 7C554E65-4324-4B81-9675-4D6EA686B0DD aws AKIAIPXLWYHBMEO22ZNQ QMqT0cdSuHs6eCanSVGr/odThlgoBqYfiWuOsOGI akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq
+iTunes/
+    iTunes Library Extras.itdb
+    iTunes Library.xml
+    Temp File 1.tmp
+    Temp File 2.tmp
+    iTunes Music/
+        Tom Petty/
+            Wildflowers/
+                04 You Wreck Me.m4a
+        Depeche Mode/
+            Violator (Remastered) [Bonus Track Version]/
+                07 Policy of Truth.m4a
+                15 Sea of Sin (Tonal Mix) [Bonus Track].m4a
+                12 Sibeling (Bonus Track).m4a
+                03 Personal Jesus.m4a
+                01 World In My Eyes.m4a
+                05 Waiting for the Night.m4a
+                10 Dangerous (Bonus Track).m4a
+                08 Blue Dress.m4a
+                04 Halo.m4a
+                11 Memphisto (Bonus Track).m4a
+                13 Kaleid (Bonus Track).m4a
+                09 Clean.m4a
+                14 Happiest Girl (Jack Mix) [Bonus Track].m4a
+                02 Sweetest Perfection.m4a
+                06 Enjoy the Silence.m4a
+        How to Destroy Angels/
+            How to Destroy Angels/
+                05 The Believers.mp3
+                01 The Space in Between.mp3
+                03 Fur Lined.mp3
+                04 BBB.mp3
+                06 A Drowning.mp3
+                02 Parasite.mp3
+
+</code></pre>
+
+<h4>List Files</h4>
+
+<p>To restore (download) the latest backup of a folder, use the <code>restore</code> command:</p>
+
+<pre><code>
+$ arq_restore restore 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570 password 7C554E65-4324-4B81-9675-4D6EA686B0DD 10000 aws AKIAIPXLWYHBMEO22ZNQ QMqT0cdSuHs6eCanSVGr/odThlgoBqYfiWuOsOGI akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq
+
+restoring folder /Volumes/Spinning Disk/stefan/Music to /Users/stefan/temp/Music
+
+...
+
+</code></pre>
 
 <h2>License</h2>
 
