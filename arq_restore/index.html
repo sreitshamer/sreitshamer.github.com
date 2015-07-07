@@ -21,10 +21,10 @@
 
 <pre><code>
 Usage:
-    arq_restore [-l log_level] listcomputers <target_type> <target_params>
-    arq_restore [-l log_level] listfolders <computer_uuid> <encryption_password> <target_type> <target_params>
-    arq_restore [-l log_level] listfiles <computer_uuid> <encryption_password> <folder_uuid> <target_type> <target_params>
-    arq_restore [-l log_level] restore <computer_uuid> <encryption_password> <folder_uuid> <bytes_per_second> <target_type> <target_params>
+    arq_restore [-l log_level] listcomputers &lt;target_type&gt; &lt;target_params&gt;
+    arq_restore [-l log_level] listfolders &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;target_type&gt; &lt;target_params&gt;
+    arq_restore [-l log_level] listfiles &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;folder_uuid&gt; &lt;target_type&gt; &lt;target_params&gt;
+    arq_restore [-l log_level] restore &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;folder_uuid&gt; &lt;bytes_per_second&gt; &lt;target_type&gt; &lt;target_params&gt;
     
 target_params by target type:
     aws:                 access_key secret_key bucket_name
@@ -134,7 +134,7 @@ iTunes/
 
 </code></pre>
 
-<h4>List Files</h4>
+<h3>Restore Files</h3>
 
 <p>To restore (download) the latest backup of a folder, use the <code>restore</code> command:</p>
 
