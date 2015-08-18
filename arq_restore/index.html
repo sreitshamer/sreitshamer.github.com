@@ -23,7 +23,6 @@
 Usage:
     arq_restore [-l log_level] listcomputers &lt;target_type&gt; &lt;target_params&gt;
     arq_restore [-l log_level] listfolders &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;target_type&gt; &lt;target_params&gt;
-    arq_restore [-l log_level] listfiles &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;folder_uuid&gt; &lt;target_type&gt; &lt;target_params&gt;
     arq_restore [-l log_level] restore &lt;computer_uuid&gt; &lt;encryption_password&gt; &lt;folder_uuid&gt; &lt;bytes_per_second&gt; &lt;target_type&gt; &lt;target_params&gt;
     
 target_params by target type:
@@ -87,50 +86,6 @@ computer 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570
         uuid 7C554E65-4324-4B81-9675-4D6EA686B0DD
     folder /Users/stefan/src
         uuid 1D142EAB-3218-48BD-BF5B-4EAEF504783E
-
-</code></pre>
-
-<h3>List Files</h3>
-
-<p>To list the files in a folder, use the <code>listfiles</code> command:</p>
-
-
-<pre><code>
-$ arq_restore listfiles 32D9D7A2-3B3E-4BE7-B85B-0605AF24F570 password 7C554E65-4324-4B81-9675-4D6EA686B0DD aws AKIAIPXLWYHBMEO22ZNQ QMqT0cdSuHs6eCanSVGr/odThlgoBqYfiWuOsOGI akiaiyuk3n3tme6l4hfa.com.haystacksoftware.arq
-iTunes/
-    iTunes Library Extras.itdb
-    iTunes Library.xml
-    Temp File 1.tmp
-    Temp File 2.tmp
-    iTunes Music/
-        Tom Petty/
-            Wildflowers/
-                04 You Wreck Me.m4a
-        Depeche Mode/
-            Violator (Remastered) [Bonus Track Version]/
-                07 Policy of Truth.m4a
-                15 Sea of Sin (Tonal Mix) [Bonus Track].m4a
-                12 Sibeling (Bonus Track).m4a
-                03 Personal Jesus.m4a
-                01 World In My Eyes.m4a
-                05 Waiting for the Night.m4a
-                10 Dangerous (Bonus Track).m4a
-                08 Blue Dress.m4a
-                04 Halo.m4a
-                11 Memphisto (Bonus Track).m4a
-                13 Kaleid (Bonus Track).m4a
-                09 Clean.m4a
-                14 Happiest Girl (Jack Mix) [Bonus Track].m4a
-                02 Sweetest Perfection.m4a
-                06 Enjoy the Silence.m4a
-        How to Destroy Angels/
-            How to Destroy Angels/
-                05 The Believers.mp3
-                01 The Space in Between.mp3
-                03 Fur Lined.mp3
-                04 BBB.mp3
-                06 A Drowning.mp3
-                02 Parasite.mp3
 
 </code></pre>
 
